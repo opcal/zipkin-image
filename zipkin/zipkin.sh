@@ -11,7 +11,7 @@ ZIPKIN_VERSION=$(curl https://api.github.com/repos/openzipkin/zipkin/releases/la
 docker build \
     --build-arg ZIPKIN_VERSION=${ZIPKIN_VERSION} \
     -t zipkin:${ZIPKIN_VERSION} \
-    -f ${CI_PROJECT_DIR}/zipkin/Dockerfile . --no-cache
+    -f ${GITHUB_WORKSPACE}/zipkin/Dockerfile . --no-cache
 docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal-project/containers/zipkin:${ZIPKIN_VERSION}
 docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal-project/containers/zipkin:latest
 docker push ${CI_REGISTRY}/opcal-project/containers/zipkin:${ZIPKIN_VERSION}
