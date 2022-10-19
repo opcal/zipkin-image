@@ -12,10 +12,10 @@ docker build \
     --build-arg ZIPKIN_VERSION=${ZIPKIN_VERSION} \
     -t zipkin:${ZIPKIN_VERSION} \
     -f ${GITHUB_WORKSPACE}/zipkin/Dockerfile . --no-cache
-docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal-project/containers/zipkin:${ZIPKIN_VERSION}
-docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal-project/containers/zipkin:latest
-docker push ${CI_REGISTRY}/opcal-project/containers/zipkin:${ZIPKIN_VERSION}
-docker push ${CI_REGISTRY}/opcal-project/containers/zipkin:latest
+docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal/zipkin:${ZIPKIN_VERSION}
+docker image tag zipkin:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal/zipkin:latest
+docker push ${CI_REGISTRY}/opcal/zipkin:${ZIPKIN_VERSION}
+docker push ${CI_REGISTRY}/opcal/zipkin:latest
 
 echo 'build zipkin finished'
 echo " "
