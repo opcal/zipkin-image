@@ -1,0 +1,3 @@
+#!/bin/sh
+
+start-zipkin-dependencies

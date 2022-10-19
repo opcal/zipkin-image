@@ -1,0 +1,30 @@
+name: build-zipkin-dependencies-images
+
+on:
+  schedule:
+    - cron: "0 18 * * 3"
+  push:
+    branches: 
+      - main
+    paths:
+      - "zipkin-dependencies/**"
+      - ".github/workflows/zipkin-dependencies.yaml"
+
+jobs:
+  images-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Env
+        run: echo "TIMESTAMP=$(date +%y.%m.%d.%H.%M)" >> $GITHUB_ENV
+      - name: Docker build & push
+        env:
+          CI_DEPLOY_USER: ${{ secrets.CR_NAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CR_PAT }}
+          CI_REGISTRY: ghcr.io
+        run: |
+          sudo apt update && sudo apt install curl
+          echo ${CI_DEPLOY_PASSWORD} | docker login ${CI_REGISTRY} -u ${CI_DEPLOY_USER} --password-stdin
+          chmod +x zipkin-dependencies/zipkin-dependencies.sh
+          zipkin-dependencies/zipkin-dependencies.sh
