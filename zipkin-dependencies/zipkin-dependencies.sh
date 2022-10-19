@@ -11,7 +11,7 @@ ZIPKIN_VERSION=$(curl https://api.github.com/repos/openzipkin/zipkin-dependencie
 docker build \
     --build-arg ZIPKIN_VERSION=${ZIPKIN_VERSION} \
     -t zipkin-dependencies:${ZIPKIN_VERSION} \
-    -f ${GITHUB_WORKSPACE}/zipkin-dependencies/Dockerfile . --no-cache
+    -f ${PROJECT_DIR}/zipkin-dependencies/Dockerfile . --no-cache
 docker image tag zipkin-dependencies:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal/zipkin-dependencies:${ZIPKIN_VERSION}
 docker image tag zipkin-dependencies:${ZIPKIN_VERSION} ${CI_REGISTRY}/opcal/zipkin-dependencies:latest
 docker push ${CI_REGISTRY}/opcal/zipkin-dependencies:${ZIPKIN_VERSION}

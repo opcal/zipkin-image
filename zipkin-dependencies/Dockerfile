@@ -14,9 +14,9 @@ RUN apt-get update && apt-get -y install cron \
 
 COPY --from=builder /zipkin /zipkin
 
-COPY ${GITHUB_WORKSPACE}/zipkin-dependencies/start-zipkin-dependencies /usr/local/bin/
-COPY ${GITHUB_WORKSPACE}/zipkin-dependencies/zipkin-dependencies-today /etc/cron.hourly/
-COPY ${GITHUB_WORKSPACE}/zipkin-dependencies/zipkin-dependencies-yesterday /etc/cron.daily/
+COPY ${PROJECT_DIR}/zipkin-dependencies/start-zipkin-dependencies /usr/local/bin/
+COPY ${PROJECT_DIR}/zipkin-dependencies/zipkin-dependencies-today /etc/cron.hourly/
+COPY ${PROJECT_DIR}/zipkin-dependencies/zipkin-dependencies-yesterday /etc/cron.daily/
 
 WORKDIR /zipkin
 
