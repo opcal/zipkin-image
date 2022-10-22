@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "exec zipkin-dependencies-today at [$(date)]" >&2
+echo "exec zipkin-dependencies-today at [$(date)]" >> /zipkin/cron.out  2>&1
 
 start-zipkin-dependencies `date -ud yesterday +%F`
