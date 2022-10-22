@@ -1,3 +1,5 @@
 #!/bin/sh
 
+echo "exec zipkin-dependencies-today at [$(date)]" >&2
+
 start-zipkin-dependencies
