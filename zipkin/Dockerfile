@@ -1,10 +1,10 @@
-FROM registry.gitlab.com/opcal-project/containers/eclipse-temurin:17-jdk as builder
+FROM ghcr.io/opcal/eclipse-temurin:17-jdk as builder
 
 WORKDIR /zipkin
 
 RUN curl -sSL https://zipkin.io/quickstart.sh | bash -s 
 
-FROM registry.gitlab.com/opcal-project/containers/eclipse-temurin:17-jre
+FROM ghcr.io/opcal/eclipse-temurin:17-jre
 
 COPY --from=builder /zipkin /zipkin
 
