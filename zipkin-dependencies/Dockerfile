@@ -5,6 +5,7 @@ WORKDIR /zipkin
 RUN curl -sSL https://zipkin.io/quickstart.sh | bash -s io.zipkin.dependencies:zipkin-dependencies:LATEST zipkin-dependencies.jar
 
 FROM eclipse-temurin:8-jre
+LABEL org.opencontainers.image.authors="opcal@outlook.com"
 
 RUN apt-get update && apt-get -y install cron \
     && apt-get clean \
