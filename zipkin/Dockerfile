@@ -4,7 +4,7 @@ WORKDIR /zipkin
 
 RUN curl -sSL https://zipkin.io/quickstart.sh | bash -s 
 
-RUN jar jar xf zipkin.jar ;\
+RUN jar xf zipkin.jar ;\
     rm -f zipkin.jar**
 
 WORKDIR /docker-bin
