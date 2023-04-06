@@ -5,10 +5,13 @@ WORKDIR /zipkin
 RUN curl -sSL https://zipkin.io/quickstart.sh | bash -s io.zipkin.dependencies:zipkin-dependencies:LATEST zipkin-dependencies.jar
 
 RUN jar xf zipkin-dependencies.jar ;\
-    rm -f zipkin-dependencies.jar**
+    rm -f zipkin-dependencies.jar** ;\
+    ls -lah
 
 FROM eclipse-temurin:8-jre
 LABEL org.opencontainers.image.authors="opcal@outlook.com"
+
+WORKDIR /zipkin
 
 ENV STORAGE_TYPE=""
 
@@ -25,8 +28,6 @@ COPY --from=builder /zipkin/* ./classes/
 COPY ${PROJECT_DIR}/zipkin-dependencies/start-zipkin-dependencies /usr/local/bin/
 COPY ${PROJECT_DIR}/zipkin-dependencies/zipkin-dependencies-today /etc/cron.hourly/
 COPY ${PROJECT_DIR}/zipkin-dependencies/zipkin-dependencies-yesterday /etc/cron.daily/
-
-WORKDIR /zipkin
 
 ENTRYPOINT ["start-zipkin-dependencies"]
 
