@@ -1,9 +1,9 @@
 name: Release Tag
 
 on: 
+  workflow_dispatch:
   schedule:
     - cron: "0 18 10 */2 *"
-  - workflow_dispatch
 
 jobs:
   release-tag:
