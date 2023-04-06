@@ -16,6 +16,6 @@ jobs:
       - uses: fregante/setup-git-user@v2
       - name: Tag
         run: |
-          TIMESTAMP=$(date +%y.%m.%d.%H.%M)
+          TIMESTAMP=$(date +%y%m%d%H%M)
           git tag -a ${TIMESTAMP} -m "Tag ${TIMESTAMP}"
           git push origin ${TIMESTAMP}
