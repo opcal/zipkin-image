@@ -6,7 +6,7 @@ WORKDIR /zipkin
 
 RUN curl -sSL https://zipkin.io/quickstart.sh | bash -s 
 
-FROM ghcr.io/opcal/eclipse-temurin:20-jre-alpine
+FROM ghcr.io/opcal/eclipse-temurin:20-jre
 
 LABEL org.opencontainers.image.authors="opcal@outlook.com"
 
