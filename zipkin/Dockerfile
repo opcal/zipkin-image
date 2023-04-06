@@ -16,12 +16,12 @@ FROM ghcr.io/opcal/eclipse-temurin:20-jre
 
 LABEL org.opencontainers.image.authors="opcal@outlook.com"
 
+WORKDIR /zipkin
+
 ENV MODULE_OPTS=
 
 COPY --from=builder /docker-bin/* /usr/local/bin/
 COPY --from=builder /zipkin /zipkin
-
-WORKDIR /zipkin
 
 EXPOSE 9410 9411
 
