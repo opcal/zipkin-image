@@ -1,4 +1,4 @@
-FROM ghcr.io/opcal/eclipse-temurin:20-jdk as builder
+FROM ghcr.io/opcal/eclipse-temurin:20-jdk AS builder
 
 ARG ZIPKIN_VERSION
 
