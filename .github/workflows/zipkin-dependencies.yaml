@@ -17,16 +17,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Login to ghcr
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.CR_NAME }}
+          password: ${{ secrets.CR_PAT }}
       - name: Set Env
         run: echo "TIMESTAMP=$(date +%y.%m.%d.%H.%M)" >> $GITHUB_ENV
       - name: Docker build & push
         env:
-          CI_DEPLOY_USER: ${{ secrets.CR_NAME }}
-          CI_DEPLOY_PASSWORD: ${{ secrets.CR_PAT }}
           CI_REGISTRY: ghcr.io
           PROJECT_DIR: ${{ github.workspace }}
         run: |
           sudo apt update && sudo apt install curl
-          echo ${CI_DEPLOY_PASSWORD} | docker login ${CI_REGISTRY} -u ${CI_DEPLOY_USER} --password-stdin
           chmod +x zipkin-dependencies/zipkin-dependencies.sh
           zipkin-dependencies/zipkin-dependencies.sh
