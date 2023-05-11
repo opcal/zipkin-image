@@ -3,7 +3,7 @@ name: Auto Tag
 on: 
   workflow_dispatch:
   schedule:
-    - cron: "0 18 10 */2 *"
+    - cron: "0 12 10 */2 *"
 
 jobs:
   auto-tag:
