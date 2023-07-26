@@ -6,7 +6,7 @@ echo " "
 echo " "
 echo 'build zipkin start'
 
-ZIPKIN_VERSION=$(curl https://api.github.com/repos/openzipkin/zipkin/releases/latest | grep tag_name | cut -d '"' -f 4)
+ZIPKIN_VERSION=$(curl https://api.github.com/repos/openzipkin/zipkin/releases/latest | jq | grep tag_name | cut -d '"' -f 4)
 
 docker build \
     --build-arg ZIPKIN_VERSION=${ZIPKIN_VERSION} \
